@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bullspire - Paper Trading Portfolio</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --card-bg: #1a1a1a;
+      --card-stroke: #2c2c2c;
+      --text: #e6e6e6;
+      --text-muted: #888;
+      --text-strong: #ffffff;
+      --green: #00c853;
+      --green-dark: #009624;
+      --green-light: #26e680;
+      --red: #ff3b30;
+      --border: #2e2e2e;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--surface);
+      padding: 1rem 1.5rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 0 var(--shadow);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .bullspire-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    header h1 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--card-bg);
+      padding: 0.5rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid var(--card-stroke);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .profile-section:hover {
+      background: #1e1e1e;
+      border-color: var(--green);
+    }
+
+    .profile-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .profile-info h4 {
+      font-size: 0.85rem;
+      color: var(--text-strong);
+      margin-bottom: 0.1rem;
+    }
+
+    .profile-info p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      background-color: var(--green-dark);
+      color: white;
+      padding: 0.25rem 0.7rem;
+      border-radius: 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    main {
+      padding: 1.3rem 1rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-strong);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .stat-card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid var(--card-stroke);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .positive {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .negative {
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    .portfolio-list {
+      margin-top: 0.5rem;
+    }
+
+    .portfolio-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.1rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-stroke);
+      border-radius: 9px;
+      margin-bottom: 0.6rem;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s ease;
+    }
+
+    .portfolio-item:hover {
+      background-color: #1e1e1e;
+    }
+    .right-section {
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+}
+
+.right-section .col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 80px;
+}
+
+.label {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pnl {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pnl.positive {
+  color: #00c853;
+}
+
+.pnl.negative {
+  color: #ff3d00;
+}
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .symbol {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .name {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .pnl {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .change {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 1.5rem 1rem 1rem;
+      border-top: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--text-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+    }
+
+    .footer-section h3 {
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 0.3rem;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .footer-section li:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.7rem;
+    }
+
+    .bullspire-footer-logo {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .green-bar {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green-light), transparent);
+      border-radius: 2px;
+      margin: 1.2rem 0 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-right {
+        gap: 0.5rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="logo.png" alt="Bullspire" class="bullspire-logo">
+      <h1>Portfolio</h1>
+    </div>
+    
+    <div class="header-right">
+      <span class="badge">Paper Trading</span>
+      <div class="profile-section">
+        <div class="profile-avatar" id="avatar"></div>
+
+        <div class="profile-info">
+         <h4 id="username"></h4>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="green-bar"></div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total Invested:</div>
+        <div class="stat-value" id="invested">₹0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Today's P&L</div>
+        <div class="stat-value positive" id="profit">₹0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Total P&L</div>
+        <div class="stat-value positive" id="totalProfit">+₹0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Current Value</div>
+        <div class="stat-value" id="totalValue">0</div>
+      </div>
+    </div>
+
+    <div class="section-title">Holdings</div>
+    <div class="stat-value" id="holdings">0</div>
+    <div class="portfolio-list" id="portfolioList">
+      <!-- Portfolio items will be loaded here -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>About Us</h3>
+        <ul>
+          <li>Our Story</li>
+          <li>Careers</li>
+          <li>Press</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Products</h3>
+        <ul>
+          <li>Stocks</li>
+          <li>F&O</li>
+          <li>Mutual Funds</li>
+          <li>IPOs</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul>
+          <li>Help & Support</li>
+          <li>Trust & Safety</li>
+          <li>Account</li>
+          <li>PMS</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>
+        <img src="logo.png" alt="Bullspire" style="height:20px; vertical-align: middle;">
+        <div class="bullspire-footer-logo"> Bullspire</div>
+      </span>
+      
+      <div style="margin-top: 0.5rem;">
+        <span>© 2026 Bullspire. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function loadUser(){
+
+  const username = localStorage.getItem("username");
+
+  if(!username) return;
+
+  // 👤 Set username
+  document.getElementById("username").innerText = username;
+
+  // 🔤 Generate avatar initials
+  let initials = username
+    .split(" ")
+    .map(w => w[0])
+    .join("")
+    .toUpperCase();
+
+  document.getElementById("avatar").innerText = initials;
+}
+
+  loadUser();
+    function loadPortfolio() {
+      const user_id = localStorage.getItem("user_id");
+
+      if (!user_id) {
+        alert("Login required");
+        window.location.href = "signin.html";
+        return;
+      }
+
+      fetch(`http://127.0.0.1:5000/portfolio/${user_id}`)
+        .then(res => res.json())
+        .then(data => {
+          // Update stats
+         // 💰 Total Invested
+document.getElementById("invested").innerText =
+  "₹" + data.total_invested.toLocaleString();
+
+// 💰 Total Portfolio Value
+document.getElementById("totalValue").innerText =
+  "₹" + data.total_value.toLocaleString();
+
+// 📊 Today's Profit (NEW)
+document.getElementById("profit").innerText =
+  data.today_profit >= 0
+    ? "+₹" + data.today_profit.toLocaleString()
+    : "₹" + data.today_profit.toLocaleString();
+
+// 📈 Total Profit
+document.getElementById("totalProfit").innerText =
+  data.total_profit >= 0
+    ? "+₹" + data.total_profit.toLocaleString()
+    : "₹" + data.total_profit.toLocaleString();
+
+// 📦 Holdings count
+document.getElementById("holdings").innerText =
+  data.stocks.length;
+   
+
+                    
+
+          // Update total profit color
+          const totalProfitEl = document.getElementById("totalProfit");
+          if (data.total_profit >= 0) {
+            totalProfitEl.classList.add("positive");
+            totalProfitEl.classList.remove("negative");
+          } else {
+            totalProfitEl.classList.add("negative");
+            totalProfitEl.classList.remove("positive");
+          }
+
+          //update today profit color
+          const todayProfitEl = document.getElementById("profit");
+          todayProfitEl.classList.remove("positive", "negative");
+
+          if (data.today_profit >= 0) {
+             todayProfitEl.classList.add("positive");
+          } else {
+             todayProfitEl.classList.add("negative");
+          }
+          
+          // Generate portfolio items
+          let html = "";
+
+          data.stocks.forEach(s => {
+            let pnlClass = s.profit >= 0 ? "positive" : "negative";
+            let percent = ((s.profit / s.invested) * 100).toFixed(2);
+
+         html += `
+  <div class="portfolio-item">
+    
+    <div class="info">
+      <div class="symbol">${s.symbol}</div>
+      <div class="name">Qty: ${s.quantity}</div>
+      <div class="name">Invested: ₹${s.invested.toLocaleString()}</div>
+      <div class="name">Date: ${s.date}</div>
+    </div>
+
+    <div class="right-section">
+
+      <div class="col">
+        <div class="label">Buy</div>
+        <div class="value">₹${s.avg_price.toLocaleString()}</div>
+      </div>
+
+      <div class="col">
+        <div class="label">Current</div>
+        <div class="value">₹${s.current_price.toLocaleString()}</div>
+      </div>
+
+      <div class="col">
+        <div class="label">Value</div>
+        <div class="value">₹${s.current_value.toLocaleString()}</div>
+      </div>
+
+      <div class="col">
+        <div class="label">P&L</div>
+        <div class="pnl ${pnlClass}">
+          ₹${s.profit.toLocaleString()}(${percent}%)
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+`;
+          });
+
+          document.getElementById("portfolioList").innerHTML = html;
+        })
+        .catch(error => {
+          console.error('Error loading portfolio:', error);
+          document.getElementById("portfolioList").innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-muted);">Error loading portfolio. Please try again.</div>';
+        });
+    }
+
+    // Load portfolio on page load
+    loadPortfolio();
+  </script>
+</body>
+</html>

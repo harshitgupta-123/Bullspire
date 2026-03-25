@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en-in">
+<head>
+    <meta charset="utf-8">
+    <title>Bullspire | Professional Stock Broker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bullspire - Your trusted partner for stock trading, mutual funds, and investment solutions">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <!-- <div id="loading-screen">
+        <div class="loading-spinner"></div>
+        <h2>Loading Bullspire...</h2>
+    </div> -->
+
+    <!-- Main Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <img id='logo' src="logo.png" height="59px" alt="Bullspire Logo">
+                <span class="logo-text">BULLSPIRE</span>
+            </div>
+            
+            <!-- Search -->
+            <div class="nav-search">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="nav-search-field" placeholder="Search stocks, mutual funds, ETFs..." id="searchInput">
+                    <button class="voice-search" title="Voice Search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Right side tools -->
+            <div class="nav-tools">
+                <a href="portfolio.html" class="nav-tool-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>PORTFOLIO</span>
+                </a>
+                
+                <a href="#" class="nav-tool-item">
+                    <i class="fas fa-headset"></i>
+                    <span>HELP & SUPPORT</span>
+                </a>
+                
+                <a href="watchlist.html" class="nav-tool-item">
+                    <i class="fas fa-heart"></i>
+                    <span>MY WATCHLIST</span>
+                </a>
+                
+                <!-- Notification Bell -->
+                <div class="notification-wrapper">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <button class="mark-all-read">Mark all read</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <i class="fas fa-arrow-up text-green"></i>
+                                <div>
+                                    <p>RELIANCE gained 2.5%</p>
+                                    <span>2 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <i class="fas fa-info-circle text-blue"></i>
+                                <div>
+                                    <p>Market opens in 30 minutes</p>
+                                    <span>1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Avatar with Dropdown -->
+                <div class="profile-wrapper">
+                    <div class="profile-trigger">
+                        <img id="profile" src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" height="40px" alt="Profile">
+                        <div class="profile-info">
+                            <span id="displayname">Loading..</span>
+                            <span class="balance">₹<span id="header-balance">Loading...</span></span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div id="profile-panel" class="profile-panel">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="Profile">
+                            </div>
+                            <div class="profile-details">
+                                <strong id="displayname2">Switch Account</strong>
+                                <small id="displaygmail"></small>
+                            </div>
+                        </div>
+                        
+                        <div class="balance-card">
+                            <div class="balance-item">
+                                <span class="balance-label">Available Balance</span>
+                               <span class="balance-amount">₹<span id="balance">Loading...</span></span>
+                            </div>
+                            <div class="balance-item">
+                                <span class="balance-label">Invested</span>
+                               <span class="balance-amount">₹<span id="invested">Loading...</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-menu">
+                            <!-- <a href="#" class="menu-item">
+                                <i class="fas fa-box"></i>
+                                <span>All Orders</span>
+                            </a>
+                            <a href="#" class="menu-item">
+                                <i class="fas fa-university"></i>
+                                <span>Bank Details</span>
+                            </a>
+                            <a href="#" class="menu-item">
+                                <i class="fas fa-headset"></i>
+                                <span>24×7 Support</span>
+                            </a>
+                            <a href="#" class="menu-item">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Reports</span>
+                            </a> -->
+                           
+                        </div>
+                        
+                        <div class="profile-actions">
+                             <a href="#" class="btn btn-primary" onclick="openMoneyBox()">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Add Money
+                            </a>
+                            <a href="Login.html" class="btn btn-primary">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Switch Account
+                            </a>
+                            <a href="Registration.html" class="btn btn-outline">
+                                <i class="fas fa-user-plus"></i>
+                                New Registration
+                            </a>
+                            <button onclick="logout()" class="btn btn-danger">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sub Navigation -->
+    <nav id="nav-subnav">
+        <div class="subnav-container">
+            <a href="#" class="nav-subnav-link active">
+                <i class="fas fa-compass"></i>
+                Explore
+            </a>
+            <a href="portfolio.html" class="nav-subnav-link">
+                <i class="fas fa-briefcase"></i>
+                Holdings
+            </a>
+            <!-- <a href="#" class="nav-subnav-link">
+                <i class="fas fa-chart-area"></i>
+                Positions
+            </a>
+            <a href="#" class="nav-subnav-link">
+                <i class="fas fa-exchange-alt"></i>
+                Orders
+            </a> -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Market Status Banner -->
+        <div class="market-status-banner">
+            <div class="status-indicator">
+                <div class="status-dot open"></div>
+                <span>Market is Open</span>
+            </div>
+            <div class="market-time">
+                <i class="fas fa-clock"></i>
+                <span id="current-time">09:15 AM</span>
+            </div>
+        </div>
+
+        <!-- Market Indices -->
+        <section class="indices-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    Major INDICES
+                </h2>
+                <button class="view-all-btn">View All</button>
+            </div>
+            
+            <div class="indices-grid">
+                <div class="index-card trending-up">
+                    <div class="index-header">
+                        <span class="index-name">NIFTY 50</span>
+                        <span class="index-symbol">NSE</span>
+                    </div>
+                    <div class="index-value">25,680.80</div>
+                    <div class="index-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +125.30 (+0.51%)
+                    </div>
+                </div>
+                
+                <div class="index-card trending-down">
+                    <div class="index-header">
+                        <span class="index-name">BANK NIFTY</span>
+                        <span class="index-symbol">NSE</span>
+                    </div>
+                    <div class="index-value">52,180.25</div>
+                    <div class="index-change negative">
+                        <i class="fas fa-arrow-down"></i>
+                        -85.40 (-0.16%)
+                    </div>
+                </div>
+                
+                <div class="index-card trending-up">
+                    <div class="index-header">
+                        <span class="index-name">SENSEX</span>
+                        <span class="index-symbol">BSE</span>
+                    </div>
+                    <div class="index-value">81,455.40</div>
+                    <div class="index-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +320.15 (+0.39%)
+                    </div>
+                </div>
+                
+                <div class="index-card trending-up">
+                    <div class="index-header">
+                        <span class="index-name">MIDCAP NIFTY</span>
+                        <span class="index-symbol">NSE</span>
+                    </div>
+                    <div class="index-value">58,920.15</div>
+                    <div class="index-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +240.80 (+0.41%)
+                    </div>
+                </div>
+                
+                <!-- <div class="index-card trending-down">
+                    <div class="index-header">
+                        <span class="index-name">BANKEX</span>
+                        <span class="index-symbol">BSE</span>
+                    </div>
+                    <div class="index-value">58,240.80</div>
+                    <div class="index-change negative">
+                        <i class="fas fa-arrow-down"></i>
+                        -120.60 (-0.21%)
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Portfolio Summary -->
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-wallet"></i>
+                        Your Investments
+                    </h3>
+                    <button class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                
+               <div class="portfolio-summary">
+    <div class="total-value">
+        <span class="label">Total Value</span>
+        <span class="amount" id="summaryTotalValue">₹0.00</span>
+    </div>
+    
+    <div class="portfolio-stats">
+        <div class="stat-item">
+            <span class="stat-label">Invested</span>
+            <span class="stat-value" id="summaryInvested">₹0.00</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Balance</span>
+            <span class="stat-value" id="summaryBalance">₹0.00</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">P&L</span>
+            <span class="stat-value" id="summaryPnL">₹0.00</span>
+        </div>
+    </div>
+</div>
+                
+                <div class="portfolio-actions">
+                    <button class="btn btn-primary" onclick="openMoneyBox()">
+                        <i class="fas fa-plus"></i>
+                        Add Money
+                    </button>
+                    <a href="portfolio.html"><button class="btn btn-outline">
+                        <i class="fas fa-eye"></i>
+                        View Holdings
+                    </button></a>
+                </div>
+            </div>
+
+            <!-- Market News -->
+            <div class="news-card">
+                <div class="card-header">
+                    <h3>
+                        <i class="fas fa-newspaper"></i>
+                        Latest News
+                    </h3>
+                    <!-- <select class="news-filter">
+                        <option>All News</option>
+                        <option>Stocks</option>
+                        <option>Crypto</option>
+                        <option>Global</option>
+                        <option>Economy</option>
+                    </select> -->
+                </div>
+              <div class="news-list" id="newsList"></div>
+           </div>   
+                
+                <!-- <div class="news-list">
+                    <div class="news-item">
+                        <div class="news-meta">
+                            <span class="news-source">Economic Times</span>
+                            <span class="news-time">2h ago</span>
+                        </div>
+                        <h4 class="news-title">Sensex rallies 500 points amid global recovery hopes</h4>
+                        <div class="news-tags">
+                            <span class="tag positive">Bullish</span>
+                            <span class="tag">Market</span>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-meta">
+                            <span class="news-source">Mint</span>
+                            <span class="news-time">4h ago</span>
+                        </div>
+                        <h4 class="news-title">Bitcoin crosses $70K again as whales buy in bulk</h4>
+                        <div class="news-tags">
+                            <span class="tag crypto">Crypto</span>
+                            <span class="tag positive">Bullish</span>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-meta">
+                            <span class="news-source">Business Standard</span>
+                            <span class="news-time">6h ago</span>
+                        </div>
+                        <h4 class="news-title">RBI expected to maintain repo rate in upcoming meet</h4>
+                        <div class="news-tags">
+                            <span class="tag neutral">Policy</span>
+                            <span class="tag">RBI</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Most Traded Stocks -->
+        <!-- <section class="stocks-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-fire"></i>
+                    Most Traded on Bullspire
+                </h2>
+                <div class="stock-filters">
+                    <button class="filter-btn active">Top Gainers</button>
+                    <button class="filter-btn">Top Losers</button>
+                    <button class="filter-btn">Most Active</button>
+                </div>
+            </div>
+            
+            <div class="stocks-grid">
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <img src="https://assets-netstorage.groww.in/stock-assets/logos2/HINDZINC.png" alt="Hindustan Zinc" class="stock-logo">
+                        <div class="stock-info">
+                            <h4 class="stock-name">Hindustan Zinc</h4>
+                            <span class="stock-symbol">HINDZINC</span>
+                        </div>
+                        <button class="watchlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="stock-price-section">
+                        <div class="current-price">₹485.60</div>
+                        <div class="price-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +12.30 (+2.60%)
+                        </div>
+                    </div>
+                    
+                    <div class="stock-actions">
+                        <button class="btn btn-success">Buy</button>
+                        <button class="btn btn-danger">Sell</button>
+                    </div>
+                </div>
+                
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <img src="https://assets-netstorage.groww.in/stock-assets/logos2/RPOWER.png" alt="Reliance Power" class="stock-logo">
+                        <div class="stock-info">
+                            <h4 class="stock-name">Reliance Power</h4>
+                            <span class="stock-symbol">RPOWER</span>
+                        </div>
+                        <button class="watchlist-btn active">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="stock-price-section">
+                        <div class="current-price">₹28.45</div>
+                        <div class="price-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            -0.85 (-2.90%)
+                        </div>
+                    </div>
+                    
+                    <div class="stock-actions">
+                        <button class="btn btn-success">Buy</button>
+                        <button class="btn btn-danger">Sell</button>
+                    </div>
+                </div>
+                
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <img src="https://assets-netstorage.groww.in/stock-assets/logos2/TATASTEEL.png" alt="Tata Steel" class="stock-logo">
+                        <div class="stock-info">
+                            <h4 class="stock-name">Tata Steel</h4>
+                            <span class="stock-symbol">TATASTEEL</span>
+                        </div>
+                        <button class="watchlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="stock-price-section">
+                        <div class="current-price">₹142.80</div>
+                        <div class="price-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +3.20 (+2.29%)
+                        </div>
+                    </div>
+                    
+                    <div class="stock-actions">
+                        <button class="btn btn-success">Buy</button>
+                        <button class="btn btn-danger">Sell</button>
+                    </div>
+                </div>
+                
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <img src="https://assets-netstorage.groww.in/stock-assets/logos2/NTPC.png" alt="NTPC" class="stock-logo">
+                        <div class="stock-info">
+                            <h4 class="stock-name">NTPC Limited</h4>
+                            <span class="stock-symbol">NTPC</span>
+                        </div>
+                        <button class="watchlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="stock-price-section">
+                        <div class="current-price">₹385.90</div>
+                        <div class="price-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +8.45 (+2.24%)
+                        </div>
+                    </div>
+                    
+                    <div class="stock-actions">
+                        <button class="btn btn-success">Buy</button>
+                        <button class="btn btn-danger">Sell</button>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <section class="stocks-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-fire"></i>
+            Most Traded on Bullspire
+        </h2>
+
+        <div class="stock-filters">
+          <button class="filter-btn active" onclick="showGainers()">Top Gainers</button>
+          <button class="filter-btn" onclick="showLosers()">Top Losers</button>
+        </div>
+    </div>
+
+    <!-- 👇 YAHI SABSE IMPORTANT HAI -->
+    <div class="stocks-grid" id="stocksGrid">
+        <!-- JS yaha pe stocks load karega -->
+    </div>
+</section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions-section">
+            <h2 class="section-title">
+                <i class="fas fa-bolt"></i>
+                Quick Actions
+            </h2>
+            <div class="quick-actions-grid">
+                <div class="action-card" onclick="openMoneyBox()"> 
+                    <i class="fas fa-plus-circle"></i>
+                    <h4>Add Money</h4>
+                    <p>Fund your account instantly</p>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>SIP Calculator</h4>
+                    <p>Plan your investments</p>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4>Learn Trading</h4>
+                    <p>Educational resources</p>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Download App</h4>
+                    <p>Trade on the go</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Stocks</a></li>
+                    <li><a href="#">Mutual Funds</a></li>
+                    <li><a href="#">ETFs</a></li>
+                    <li><a href="#">IPO</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">Complaints</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">SEBI</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bullspire. All rights reserved. | SEBI Reg: INZ000123456</p>
+        </div>
+    </footer>
+    <!-- ✅ Add Money Box -->
+<div id="addMoneyBox" class="money-overlay">
+  <div class="money-card">
+
+    <h2><img src="logo.png" alt="height:50px" width="50px"></h2>
+
+    <input type="number" id="addAmount" placeholder="Enter amount" />
+
+    <div class="quick-buttons">
+      <button onclick="setAmount(1000)">+1k</button>
+      <button onclick="setAmount(5000)">+5k</button>
+      <button onclick="setAmount(10000)">+10k</button>
+    </div>
+
+    <div class="money-actions">
+      <button class="add-btn" onclick="submitMoney()">Add Money</button>
+      <button class="cancel-btn" onclick="closeMoneyBox()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+    <script> 
+        
+        
+        //live news
+        
+const API_KEY ="d6v2c1pr01qig5469ih0d6v2c1pr01qig5469ihg"; // apni finnhub key daal
+
+// time convert → "2h ago"
+function timeAgo(timestamp) {
+    const now = new Date();
+    const newsTime = new Date(timestamp * 1000);
+    const diff = Math.floor((now - newsTime) / (1000 * 60 * 60));
+
+    if (diff < 1) return "Just now";
+    if (diff === 1) return "1h ago";
+    return diff + "h ago";
+}
+
+// basic sentiment detection
+function getSentiment(text) {
+    text = text.toLowerCase();
+
+    if (text.includes("rise") || text.includes("rally") || text.includes("gain"))
+        return "positive";
+    
+    if (text.includes("fall") || text.includes("decline") || text.includes("cut"))
+        return "negative";
+
+    return "neutral";
+}
+
+// main function
+async function loadNews() {
+    try {
+        const res = await fetch(`https://finnhub.io/api/v1/news?category=general&token=${API_KEY}`);
+        const data = await res.json();
+
+        const container = document.getElementById("newsList");
+        container.innerHTML = "";
+
+        data.slice(0, 6).forEach(n => {
+            const sentiment = getSentiment(n.headline);
+
+            container.innerHTML += `
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-source">${n.source}</span>
+                        <span class="news-time">${timeAgo(n.datetime)}</span>
+                    </div>
+
+                    <h4 class="news-title">
+                        <a href="${n.url}" target="_blank" style="text-decoration:none; color:inherit;">
+                            ${n.headline}
+                        </a>
+                    </h4>
+
+                    <div class="news-tags">
+                        <span class="tag ${sentiment}">
+                            ${sentiment === "positive" ? "Bullish" : sentiment === "negative" ? "Bearish" : "Neutral"}
+                        </span>
+                        <span class="tag">Market</span>
+                    </div>
+                </div>
+            `;
+        });
+
+    } catch (error) {
+        console.error("Error fetching news:", error);
+    }
+}
+  
+// page load pe call
+loadNews();
+//setInterval(loadNews, 60000);
+
+      //most traded stocks live
+
+
+
+ async function loadStocks(type = "gainers") {
+    try {
+        const res = await fetch("/api/top_stocks");
+        const data = await res.json();
+
+        console.log("API DATA:", data);
+
+        if (type === "gainers") {
+            renderStocks(data.gainers);
+        } else {
+            renderStocks(data.losers);
+        }
+
+    } catch (err) {
+        console.log("ERROR:", err);
+    }
+}
+
+function showGainers() {
+    loadStocks("gainers");
+}
+
+function showLosers() {
+    loadStocks("losers");
+}
+
+function renderStocks(data) {
+    const container = document.getElementById("stocksGrid");
+    container.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        container.innerHTML = "<p>No stocks found ❌</p>";
+        return;
+    }
+
+    data.forEach(stock => {
+
+        const isPositive = stock.percent >= 0;
+
+        const logo = `https://assets-netstorage.groww.in/stock-assets/logos2/${stock.symbol.split('.')[0]}.png`;
+
+        container.innerHTML += `
+        <div class="stock-card">
+            <div class="stock-header">
+
+                <img src="${logo}" class="stock-logo"
+                     onerror="this.src='https://via.placeholder.com/50'">
+
+                <div class="stock-info">
+                    <h4 class="stock-name">${stock.name}</h4>
+                    <span class="stock-symbol">${stock.symbol}</span>
+                </div>
+
+                <button class="watchlist-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            
+            <div class="stock-price-section">
+                <div class="current-price">₹${stock.price}</div>
+
+                <div class="price-change ${isPositive ? 'positive' : 'negative'}">
+                    ${stock.change} (${stock.percent}%)
+                </div>
+            </div>
+        </div>
+        `;
+    });
+}
+
+// default load
+loadStocks();
+
+// button events
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+
+            if (this.innerText.toLowerCase().includes("gainer")) {
+                showGainers();
+            } else {
+                showLosers();
+            }
+        });
+    });
+});
+    function addToWatchlist(symbol) {
+    let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+
+    if (!watchlist.includes(symbol)) {
+        watchlist.push(symbol);
+        localStorage.setItem("watchlist", JSON.stringify(watchlist));
+        alert(symbol + " added to watchlist ✅");
+    } else {
+        alert("Already in watchlist ⚠️");
+    }
+}
+
+
+     async function updateLivePrices() {
+    try {
+        const res = await fetch("http://localhost:5000/api/live_prices");
+        const liveData = await res.json();
+
+        // Update Indices
+        document.querySelectorAll(".indices-grid .index-card").forEach(card => {
+            const name = card.querySelector(".index-name").textContent.trim();
+            const data = liveData.find(d => d.name === name && d.type === "index");
+            if (!data) return;
+
+            const valueEl = card.querySelector(".index-value");
+            const changeEl = card.querySelector(".index-change");
+
+            valueEl.textContent = `₹${data.price}`;
+            changeEl.innerHTML = `${data.change >= 0 ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>'} ${data.change} (${data.percent}%)`;
+            changeEl.className = `index-change ${data.change >= 0 ? 'positive' : 'negative'}`;
+        });
+
+        // Update Stocks
+        document.querySelectorAll(".stocks-grid .stock-card").forEach(card => {
+            const name = card.querySelector(".stock-name").textContent.trim();
+            const data = liveData.find(d => d.name === name && d.type === "stock");
+            if (!data) return;
+
+            const priceEl = card.querySelector(".current-price");
+            const changeEl = card.querySelector(".price-change");
+
+            priceEl.textContent = `₹${data.price}`;
+            changeEl.innerHTML = `${data.change >= 0 ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>'} ${data.change} (${data.percent}%)`;
+            changeEl.className = `price-change ${data.change >= 0 ? 'positive' : 'negative'}`;
+        });
+
+    } catch (err) {
+        console.error("Live data fetch failed:", err);
+    }
+}
+
+// Initial load
+updateLivePrices();
+// Update every 10 seconds
+setInterval(updateLivePrices, 1000);
+//status of market
+const now = new Date();
+const hours = now.getHours();
+const minutes = now.getMinutes();
+
+const isMarketOpen = (hours > 9 || (hours === 9 && minutes >= 15)) && (hours < 15 || (hours === 15 && minutes <= 30));
+
+if (!isMarketOpen) {
+    document.querySelector(".market-status-banner span").textContent = "Market is Closed";
+    document.querySelector(".status-dot").classList.remove("open");
+    document.querySelector(".status-dot").classList.add("closed");
+}
+//searching in search bar
+let stockList = [];
+
+fetch("stocks.json")
+  .then(res => res.json())
+  .then(data => {
+    stockList = data;
+  });
+
+document.getElementById("searchInput").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    const query = this.value.toLowerCase().trim();
+    const found = stockList.find(stock => stock.name.toLowerCase() === query || stock.symbol.toLowerCase() === query);
+
+    if (found) {
+      window.open(`stock.html?symbol=${found.symbol}`, '_blank');
+
+    } else {
+      alert("Stock not found!");
+    }
+  }
+});
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+        // Profile Panel Toggle - Fixed Version
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileTrigger = document.querySelector('.profile-trigger');
+            const profilePanel = document.querySelector('.profile-panel');
+            
+            if (profileTrigger && profilePanel) {
+                // Toggle dropdown on click
+                profileTrigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isVisible = profilePanel.style.display === 'block';
+                    
+                    if (isVisible) {
+                        profilePanel.style.display = 'none';
+                        profilePanel.style.opacity = '0';
+                        profilePanel.style.visibility = 'hidden';
+                    } else {
+                        profilePanel.style.display = 'block';
+                        profilePanel.style.opacity = '1';
+                        profilePanel.style.visibility = 'visible';
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileTrigger.contains(e.target) && !profilePanel.contains(e.target)) {
+                        profilePanel.style.display = 'none';
+                        profilePanel.style.opacity = '0';
+                        profilePanel.style.visibility = 'hidden';
+                    }
+                });
+                
+                // Prevent dropdown from closing when clicking inside
+                profilePanel.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+
+        // Load User Data
+        window.addEventListener("DOMContentLoaded", () => {
+            const username = localStorage.getItem("username") || "John Doe";
+            const gmail = localStorage.getItem("gmail") || "john@example.com";
+
+            const displayNameElements = document.querySelectorAll("#displayname, #displayname2");
+            const displayGmailElement = document.getElementById("displaygmail");
+
+            displayNameElements.forEach(element => {
+                if (element) element.innerText = username;
+            });
+
+            if (displayGmailElement) {
+                displayGmailElement.innerText = gmail;
+            }
+        });
+
+        // Logout Function
+        function logout() {
+            localStorage.clear();
+            window.location.href = "Login.html";
+        }
+
+        // Real-time Clock
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-IN', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            
+            const timeElement = document.getElementById('current-time');
+            if (timeElement) {
+                timeElement.textContent = timeString;
+            }
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Filter Buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Watchlist Toggle
+        document.querySelectorAll('.watchlist-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('active')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                }
+            });
+        });
+//fetching balance and invested amount
+function loadProfile() {
+  const user_id = localStorage.getItem("user_id");
+
+  fetch(`http://127.0.0.1:5000/profile/${user_id}`)
+    .then(res => res.json())
+    .then(data => {
+      // 💰 balance
+      document.getElementById("balance").innerText =
+        data.balance.toLocaleString();
+
+
+      // 📊 invested
+      document.getElementById("invested").innerText =
+        data.invested.toLocaleString();
+
+         // 🔥 Header balance (NEW)
+      document.getElementById("header-balance").innerText =
+        data.balance.toLocaleString();
+       
+        //document.getElementById("your_investment_invested").innerText=
+        data.invested.toLocaleString(); 
+        
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("balance").innerText = "Error";
+      document.getElementById("invested").innerText = "Error";
+    });
+}    
+window.onload = function () {
+  loadProfile();
+};
+
+function submitMoney() {
+  const user_id = localStorage.getItem("user_id");
+  const amount = parseFloat(document.getElementById("addAmount").value);
+
+  if (!amount || amount <= 0) {
+    alert("Enter valid amount ❌");
+    return;
+  }
+
+  fetch("http://127.0.0.1:5000/add_money", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      user_id: user_id,
+      amount: amount
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("Money Added 💰");
+
+    closeMoneyBox();
+    loadProfile();   // 🔥 refresh balance
+
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error ❌");
+  });
+}
+ window.onclick = function(e) {
+  const box = document.getElementById("addMoneyBox");
+  if (e.target === box) {
+    box.style.display = "none";
+  }
+};
+    //add money
+    function openMoneyBox() {
+  document.getElementById("addMoneyBox").style.display = "flex";
+}
+
+function closeMoneyBox() {
+  document.getElementById("addMoneyBox").style.display = "none";
+}
+
+function setAmount(val) {
+  document.getElementById("addAmount").value = val;
+}
+
+function loadSummary() {
+  const user_id = localStorage.getItem("user_id");
+  if (!user_id) return;
+
+  // 🔥 1. Portfolio API
+  fetch(`http://127.0.0.1:5000/portfolio/${user_id}`)
+    .then(res => res.json())
+    .then(data => {
+
+      // 💰 Total Value
+      document.getElementById("summaryTotalValue").innerText =
+        "₹" + data.total_value.toLocaleString();
+
+      // 💰 Invested
+      document.getElementById("summaryInvested").innerText =
+        "₹" + data.total_invested.toLocaleString();
+
+      // ❌ REMOVE current (ab use nahi karna)
+      // document.getElementById("summaryCurrent")
+
+      // 📊 P&L + %
+      let pnl = data.total_profit;
+      let percent = data.total_invested > 0
+        ? ((pnl / data.total_invested) * 100).toFixed(2)
+        : 0;
+
+      let pnlEl = document.getElementById("summaryPnL");
+
+      pnlEl.innerText =
+        pnl >= 0
+          ? `+₹${pnl.toLocaleString()} (${percent}%)`
+          : `₹${pnl.toLocaleString()} (${percent}%)`;
+
+      pnlEl.classList.remove("positive", "negative", "neutral");
+
+      if (pnl > 0) pnlEl.classList.add("positive");
+      else if (pnl < 0) pnlEl.classList.add("negative");
+      else pnlEl.classList.add("neutral");
+
+    })
+    .catch(err => console.error("Portfolio error:", err));
+
+
+  // 🔥 2. Profile API (BALANCE)
+  fetch(`http://127.0.0.1:5000/profile/${user_id}`)
+    .then(res => res.json())
+    .then(data => {
+
+      let balEl = document.getElementById("summaryBalance");
+
+      if (balEl) {
+        balEl.innerText =
+          "₹" + (data.balance || 0).toLocaleString();
+      }
+
+    })
+    .catch(err => console.error("Balance error:", err));
+}
+
+
+// 🔥 call
+document.addEventListener("DOMContentLoaded", loadSummary);
+    </script>
+</body>
+</html>
