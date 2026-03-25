@@ -841,7 +841,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Initial load
 updateLivePrices();
 // Update every 10 seconds
-setInterval(updateLivePrices, 1000);
+setInterval(updateLivePrices, 10000);
 //status of market
 const now = new Date();
 const hours = now.getHours();
@@ -929,8 +929,8 @@ document.getElementById("searchInput").addEventListener("keydown", function (e) 
 
         // Load User Data
         window.addEventListener("DOMContentLoaded", () => {
-            const username = localStorage.getItem("username") || "John Doe";
-            const gmail = localStorage.getItem("gmail") || "john@example.com";
+            const username = localStorage.getItem("username") || "Login";
+            const gmail = localStorage.getItem("gmail") || "";
 
             const displayNameElements = document.querySelectorAll("#displayname, #displayname2");
             const displayGmailElement = document.getElementById("displaygmail");
@@ -995,35 +995,37 @@ document.getElementById("searchInput").addEventListener("keydown", function (e) 
 function loadProfile() {
   const user_id = localStorage.getItem("user_id");
 
+  if (!user_id) return;
+
   fetch(`http://127.0.0.1:5000/profile/${user_id}`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("API failed");
+      }
+      return res.json();
+    })
     .then(data => {
-      // 💰 balance
+
+      if (!data) return;
+
       document.getElementById("balance").innerText =
-        data.balance.toLocaleString();
+        Number(data.balance || 0).toLocaleString();
 
-
-      // 📊 invested
       document.getElementById("invested").innerText =
-        data.invested.toLocaleString();
+        Number(data.invested || 0).toLocaleString();
 
-         // 🔥 Header balance (NEW)
-      document.getElementById("header-balance").innerText =
-        data.balance.toLocaleString();
-       
-        //document.getElementById("your_investment_invested").innerText=
-        data.invested.toLocaleString(); 
-        
+      const headerBalance = document.getElementById("header-balance");
+      if (headerBalance) {
+        headerBalance.innerText =
+          Number(data.balance || 0).toLocaleString();
+      }
+
     })
     .catch(err => {
-      console.error(err);
-      document.getElementById("balance").innerText = "Error";
-      document.getElementById("invested").innerText = "Error";
+      console.error("loadProfile error:", err);
     });
-}    
-window.onload = function () {
-  loadProfile();
-};
+}
+
 
 function submitMoney() {
   const user_id = localStorage.getItem("user_id");
@@ -1192,15 +1194,47 @@ document.addEventListener("click", function (e) {
     box.style.display = "none";
   }
 });
-  window.addEventListener("load", () => {
-    
-    const user = localStorage.getItem("user_id");
+ 
 
-    if (!user) {
+    //auto logout system
+    const TIME_LIMIT = 10 * 60 * 1000; // 10 min
+
+function checkSession() {
+    const user = localStorage.getItem("user_id");
+    const lastActivity = localStorage.getItem("lastActivity");
+
+    if (!user || !lastActivity) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (Date.now() - lastActivity > TIME_LIMIT) {
+        localStorage.clear();
+        alert("Session expired due to inactivity!");
         window.location.href = "login.html";
     }
-});
-       
+}
+
+// 🔥 activity update
+function updateActivity() {
+    localStorage.setItem("lastActivity", Date.now());
+}
+
+// 🔥 events
+document.addEventListener("click", updateActivity);
+document.addEventListener("keypress", updateActivity);
+document.addEventListener("mousemove", updateActivity);
+document.addEventListener("scroll", updateActivity);
+
+// 🔥 periodic check
+setInterval(checkSession, 10000);
+
+// 🔥 on load
+window.onload = checkSession;
+       window.onload = function() {
+  loadProfile();
+  
+};
     </script>
 </body>
 </html>
