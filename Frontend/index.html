@@ -27,14 +27,21 @@
             
             <!-- Search -->
             <div class="nav-search">
-                <div class="search-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="nav-search-field" placeholder="Search stocks, mutual funds, ETFs..." id="searchInput">
-                    <button class="voice-search" title="Voice Search">
-                        <i class="fas fa-microphone"></i>
-                    </button>
-                </div>
+              <div class="search-wrapper">
+                 <i class="fas fa-search search-icon"></i>
+ 
+               <input type="text" class="nav-search-field" 
+                  placeholder="Search stocks, mutual funds, ETFs..." 
+                  id="searchInput" autocomplete="off">
+
+               <button class="voice-search" title="Voice Search">
+               <i class="fas fa-microphone"></i>
+               </button>
             </div>
+
+    <!-- 🔥 Suggestions dropdown -->
+    <div id="suggestions" class="suggestions-box"></div>
+</div>
             
             <!-- Right side tools -->
             <div class="nav-tools">
@@ -43,7 +50,7 @@
                     <span>PORTFOLIO</span>
                 </a>
                 
-                <a href="#" class="nav-tool-item">
+                <a href="helpsupport.html" class="nav-tool-item">
                     <i class="fas fa-headset"></i>
                     <span>HELP & SUPPORT</span>
                 </a>
@@ -88,8 +95,8 @@
                     <div class="profile-trigger">
                         <img id="profile" src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" height="40px" alt="Profile">
                         <div class="profile-info">
-                            <span id="displayname">Loading..</span>
-                            <span class="balance">₹<span id="header-balance">Loading...</span></span>
+                            <span id="displayname">Login</span>
+                            <span class="balance">₹<span id="header-balance"></span></span>
                         </div>
                         <i class="fas fa-chevron-down"></i>
                     </div>
@@ -1129,6 +1136,71 @@ function loadSummary() {
 
 // 🔥 call
 document.addEventListener("DOMContentLoaded", loadSummary);
+
+       // for autofinding stocks
+       let stocks = [];
+
+// Load JSON
+fetch("stocks.json")
+  .then(res => res.json())
+  .then(data => {
+    stocks = data;
+  });
+
+const input = document.getElementById("searchInput");
+const box = document.getElementById("suggestions");
+
+input.addEventListener("input", function () {
+  const value = this.value.toLowerCase();
+
+  box.innerHTML = "";
+
+  if (value === "") {
+    box.style.display = "none";
+    return;
+  }
+
+  const filtered = stocks.filter(stock =>
+    stock.name.toLowerCase().includes(value) ||
+    stock.symbol.toLowerCase().includes(value)
+  );
+
+  if (filtered.length === 0) {
+    box.style.display = "none";
+    return;
+  }
+
+  filtered.forEach(stock => {
+    const div = document.createElement("div");
+    div.classList.add("suggestion-item");
+
+    div.innerHTML = `<b>${stock.name}</b> (${stock.symbol})`;
+
+    div.onclick = () => {
+      window.location.href = `stock.html?symbol=${stock.symbol}`;
+    };
+
+    box.appendChild(div);
+  });
+
+  box.style.display = "block";
+});
+
+// Click outside to close dropdown
+document.addEventListener("click", function (e) {
+  if (!e.target.closest(".nav-search")) {
+    box.style.display = "none";
+  }
+});
+  window.addEventListener("load", () => {
+    
+    const user = localStorage.getItem("user_id");
+
+    if (!user) {
+        window.location.href = "login.html";
+    }
+});
+       
     </script>
 </body>
 </html>

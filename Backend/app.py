@@ -18,6 +18,7 @@ client = MongoClient("mongodb+srv://harshitgupta241005_db_user:k9DjQ1ho4gJEclbL@
 db = client["bullspire"]
 collection = db["users"]
 portfolio = db["portfolio"] 
+support_collection = db["support_messages"]
 
 
 # 🔥 unique gmail
@@ -706,6 +707,40 @@ def add_money():
     except Exception as e:
         print("❌ ERROR:", e)
         return jsonify({"error": str(e)}), 500
+    
+    # ✅ Support API (frontend yaha hit karega)
+@app.route('/support', methods=['POST'])
+def support():
+    try:
+        data = request.get_json()
+
+        name = data.get("name")
+        email = data.get("email")
+        message = data.get("message")
+
+        if not name or not email or not message:
+            return jsonify({"status": "error", "message": "Missing fields"}), 400
+
+        # 💾 Save in MongoDB
+        support_collection.insert_one({
+            "name": name,
+            "email": email,
+            "message": message,
+            "status": "open",   # open / resolved
+            "created_at": datetime.utcnow()
+        })
+
+        return jsonify({
+            "status": "success",
+            "message": "Support ticket created"
+        })
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
